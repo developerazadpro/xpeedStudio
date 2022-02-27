@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2022 at 11:09 PM
+-- Generation Time: Feb 27, 2022 at 11:17 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -47,34 +47,30 @@ CREATE TABLE `reports` (
 --
 
 INSERT INTO `reports` (`id`, `amount`, `buyer`, `receipt_id`, `items`, `buyer_email`, `buyer_ip`, `note`, `city`, `phone`, `hash_key`, `entry_at`, `entry_by`) VALUES
-(2, 600, 'Solaiman', 'AOJALJDJ', '[\"laptop\"]', 'solaiman@gmail.com', '::1', 'NA', 'Dhaka', '1764567878', '$2y$10$t/lkwbeECQvNloiZHIF4fuhOBdp6n0nwKpbAuHZQNwgY58vAPcj5C', '2022-02-27 02:12:51', 2),
-(3, 3423443, 'sefsfdf', 'sfsff', '[\"sdfsf\"]', 'sf@sdfsdf.sfsfd', '::1', 'sdfdsf', 'dfsfsd', '131323', '$2y$10$gEUs.aog0HUBs00xqZdrR.kOXrCb00nTgQsNkaa2lt/39nynXlN1m', '2022-02-27 03:34:39', 1),
-(4, 0, 'sfsfdsf', 'sfsdf', '[\"fsdffs\"]', 'sfdsf@sfd.dfgdg', '::1', 'fsdf', 'sdfsfd', '3434324', '$2y$10$R5gM/xoeKHbaP4EBOH3SYeDp7Rl4ZSRGdGtQgiEVwW6V.kE7CTL/a', '2022-02-27 03:36:05', 1),
-(5, 34343, 'sdfd', 'dfdf', '[\"sds\"]', 'dfsds@sdfsd.dds', '::1', 'dfdsf', 'ds', '343432', '$2y$10$3WgH7rhKB2xwYap6cvTWi.Xn89JHuz1.3tWaNp5zgs1ke9z5PkiPu', '2022-02-27 03:45:59', 1),
-(6, 34343, 'sdfd', 'dfdf', '[\"sds\"]', 'dfsds@sdfsd.dds', '::1', 'dfdsf', 'ds', '343432', '$2y$10$J1FG7p3BG19tLP/hCOMuvu0Cl4bE7moSkdPfZ9esoWEIULao3GmLi', '2022-02-27 03:45:59', 1),
-(15, 4323232, 'sdff', 'dsff', '[\"fsdffs\",\"sdff\",\"dsfd\"]', 'sdssdfsd@sdf.fgdg', '::1', 'sdfs', 'sdfsf', '3423424323', '$2y$10$//bv49TsGa/3wduuTjoH0O2Pu5v3.Sdqva5N0T6WX4lBhAxfBZD56', '2022-02-27 04:00:54', 1);
+(1, 500, 'Azharul', 'cons', '[\"itemone\",\"itemtwo\"]', 'azharul.ece13.hstu@gmail.com', '::1', 'not applicable', 'Dhaka', '1521470368', '$2y$10$OF1nXVC0bEk5f3QXc5xPC.6TvXgiOyprkEYbWkHjCF6d3ih50YwWm', '2022-02-27 16:02:12', 1),
+(2, 600, 'Rakib Mahmud', 'recieid', '[\"gadgets\"]', 'rakib@yahoo.com', '::1', 'na', 'Dhaka', '1616000000', '$2y$10$GRv20vZ985HD/JAwQL04n.zTc5TB/pCVkFw0ySGxZRzwJOkYUGowG', '2022-02-27 16:13:17', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `password`, `created_at`) VALUES
-(1, 'Md. Azharul Islam', 'azharul.ece13.hstu@gmail.com', '$2y$10$rbW9yEiHbeifGzPbOo7hR.vZrf1mIve9te7vKN9N8KH5BlMNCN2eW', '2022-02-27 02:04:35'),
-(2, 'Solaiman', 'solaiman@gmail.com', '$2y$10$HA302hbybNI80kRD51C/5OsyGLaQF.FIhq1Tfv79peUvg1La0gcAa', '2022-02-27 02:11:25');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`) VALUES
+(1, 'Md. Azharul Islam', 'azharul.ece13.hstu@gmail.com', '$2y$10$BpJxCu/i.Cgpy.Flh.424.ji1OZmh.7r9TE1.1RQ8Hxo1ZVz.YzRq', '2022-02-27 15:57:19'),
+(2, 'Rakib Mahmud', 'rakib@yahoo.com', '$2y$10$.gqLYQzhtmxGiZFP7u0JgeXdwX3UZdeDA4/7qoYpZwIkwpPZp49.a', '2022-02-27 16:11:55');
 
 --
 -- Indexes for dumped tables
@@ -87,9 +83,9 @@ ALTER TABLE `reports`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -100,11 +96,11 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
