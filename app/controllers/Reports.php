@@ -4,8 +4,7 @@
     
     public function __construct(){     
       $this->reportModel = $this->model('Report');
-      $this->userModel = $this->model('User');      
-        
+      $this->userModel = $this->model('User');
     }    
     
     public function index(){
@@ -28,7 +27,11 @@
     public function addSubmit(){
         $errors = [];
         $data = [];
-
+        
+        #cookie
+        $cookie_name = "email";
+        $cookie_value = "info@xstudio.com";
+        
         if (empty($_POST['amount'])) {
             $errors['amount'] = 'Amount is required.';
         }
@@ -61,26 +64,36 @@
             $data['success'] = false;
             $data['errors']  = $errors;
         } else {
-            $data = [
-                'amount'      => trim($_POST['amount']),
-                'buyer'       => trim($_POST['buyer']),
-                'receipt_id'  => trim($_POST['receipt_id']),
-                'items'       => json_encode($_POST['items']),
-                'buyer_email' => trim($_POST['buyer_email']),
-                'buyer_ip'    => $_SERVER['REMOTE_ADDR'],
-                'note'        => trim($_POST['note']),
-                'city'        => trim($_POST['city']),
-                'phone'       => trim($_POST['phone']),
-                'hash_key'    => password_hash($_POST['receipt_id'], PASSWORD_DEFAULT),
-                'entry_by'    => $_SESSION['user_id'],
-            ];            
-            if($this->reportModel->addReport($data)){
+            if(isset($_COOKIE[$cookie_name])) {
                 $data['success'] = true;
-                $data['message'] = 'Success! Your report have been added.';
+                $data['message'] = 'Data already submitted, Try again later after 24 hours.';
             }else{
-                $data['success'] = false;
-                $data['message'] = 'Error! Something went wrong.';
-            }            
+                # porceed for submit
+                $data = [
+                    'amount'      => trim($_POST['amount']),
+                    'buyer'       => trim($_POST['buyer']),
+                    'receipt_id'  => trim($_POST['receipt_id']),
+                    'items'       => json_encode($_POST['items']),
+                    'buyer_email' => trim($_POST['buyer_email']),
+                    'buyer_ip'    => $_SERVER['REMOTE_ADDR'],
+                    'note'        => trim($_POST['note']),
+                    'city'        => trim($_POST['city']),
+                    'phone'       => trim($_POST['phone']),
+                    'hash_key'    => password_hash($_POST['receipt_id'], PASSWORD_DEFAULT),
+                    'entry_by'    => $_SESSION['user_id'],
+                ];            
+                if($this->reportModel->addReport($data)){
+                    #set cookie
+                    setcookie($cookie_name, $cookie_value, time() + (24 * 60 * 60), "/"); // 24 hours
+                    #     
+                    $data['success'] = true;
+                    $data['message'] = 'Success! Your report have been added.';
+                }else{
+                    $data['success'] = false;
+                    $data['message'] = 'Error! Something went wrong.';
+                }
+                #
+            }        
         }
         echo json_encode($data);
     }

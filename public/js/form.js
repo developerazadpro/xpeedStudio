@@ -4,7 +4,6 @@ $(document).ready(function () {
   $("#reportForm").submit(function (event) {
   event.preventDefault();      
   var formData = $(this).serialize()
-  //var url = '<?php echo URLROOT ?>'+'/reports/addSubmit';
   var url = 'http://localhost/xpeedStudio/reports/addSubmit';
   //console.log(url);
 
