@@ -4,9 +4,9 @@ How to Run Projet:
 Requirements:
   1.Download and Install any local web server such as XAMPP/WAMP/MAMP/LAMP.
   2.Download the provided source code zip file 
-		via google drive link: 
+		via google drive link: https://drive.google.com/file/d/1Tf3nw4zKKjl4NM81j-tBlDOicVSdiuW5/view
 		or from attached file within email 
-		or from github link:
+		or from github link: https://github.com/developerazadpro/xpeedStudio
 
 Installation/Setup:
   1.Open your XAMPP/WAMP/MAMP/LAMP's Control Panel and start the Apache and MySQL.
